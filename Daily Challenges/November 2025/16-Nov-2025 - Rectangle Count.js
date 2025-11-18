@@ -10,46 +10,26 @@ countRectangles(1, 3)       // should return 6.
 countRectangles(3, 2)       // should return 18.
 countRectangles(1, 2)       // should return 3.
 countRectangles(5, 4)       // should return 150.
-//countRectangles(11, 19)     // should return 12540.
+countRectangles(11, 19)     // should return 12540.
 
 function countRectangles(width, height) {
 
-    let counter = 0;
-    let iIncrement = 0;
-    let jIncrement = 0;
+    let result = 0;
 
-    while(iIncrement <= width) {
+    // Use combinatorial formula
+    // Work out how many boundaries there are, i.e. grid lines
+    let horizontalLines = width + 1;
+    let verticalLines = height + 1;
 
-        for(let i = 1; i <= width; i++) {
-            
-            if(i + iIncrement <= width) {
-
-                while(jIncrement <= height) {
-                
-                    for(let j = 1; j <= height; j++) {
-
-                        if(j + jIncrement <= height) {
-                            counter++;
-
-                        }
-
-                    }
-
-                    jIncrement++;
-
-                }
-                
-            }
-            
-     
-        }
-
-        iIncrement++;
+    // Work out the different ways both horizontal and vertical boundaries can be chosen
+    let waysToChooseHorizontal = (horizontalLines * width) / 2;
+    let waysToChooseVertical = (verticalLines * height) / 2;
     
-    }
+    // The total number of rectangles is these two numbers multiplied
+    result = waysToChooseHorizontal * waysToChooseVertical; 
 
-    console.log(counter);
-    
+    console.log(result);
 
-  return width;
+    return result;
+
 }
